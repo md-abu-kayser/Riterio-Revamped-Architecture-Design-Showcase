@@ -1,0 +1,162 @@
+/*----------------------------------------------- css/style.css Enhancements:
+theme variable fallbacks, animations and utility helpers.
+-----------------------------------------------*/
+:root {
+  /* default theme
+(classic) */
+  --bg: #ffffff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --accent: #0ea5a4; /* brand-2 */
+  --accent-2: #abef5f;
+} /* Theme variants using
+data-theme on html */
+:root[data-theme="classic"] {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --accent: #0ea5a4;
+  --accent-2: #abef5f;
+}
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --card: #0f172a;
+  --muted: #94a3b8;
+  --text: #e6eef6;
+  --accent: #06b6d4;
+  --accent-2: #16a34a;
+}
+:root[data-theme="sunset"] {
+  --bg: linear-gradient(180deg, #fff7ed, #fff1f0);
+  --card: #fffaf5;
+  --muted: #7c3f00;
+  --text: #7c2d12;
+  --accent: #ff7a59;
+  --accent-2: #ffc857;
+}
+:root[data-theme="ocean"] {
+  --bg: linear-gradient(180deg, #eef2ff, #ecfeff);
+  --card: #f8fdff;
+  --muted: #0f172a;
+  --text: #063a6f;
+  --accent: #2dd4bf;
+  --accent-2: #60a5fa;
+}
+:root[data-theme="forest"] {
+  --bg: linear-gradient(180deg, #f3fff0, #ecfdf5);
+  --card: #f8fff2;
+  --muted: #254b2b;
+  --text: #0b3b1b;
+  --accent: #a3e635;
+  --accent-2: #166534;
+} /* Basic page styles */
+body {
+  background: var(--bg);
+  color: var(--text);
+} /* Theme switching transition */
+.body.theme-switching,
+body.theme-switching * {
+  transition: background 260ms ease, color 260ms ease;
+}
+/* input visual improvements */
+.input,
+.textarea {
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+.input:focus,
+.textarea:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.08);
+} /* subtle utility
+sizes */
+.size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+} /* Card hover micro-interaction
+*/
+.card,
+article,
+figure {
+  will-change: transform;
+}
+.card:hover,
+article:hover,
+figure:hover {
+  transform: translateY(-6px) scale(1.003);
+} /* Buttons loading
+simulation */
+button.loading {
+  opacity: 0.9;
+  pointer-events: none;
+}
+button.loading::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  animation: spin 900ms linear infinite;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} /* soft focus outlines for accessibility */
+:focus {
+  outline: 3px solid rgba(99, 102, 241, 0.18);
+  outline-offset: 3px;
+} /* small helpers for
+transform scale on hover */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+.hover\:scale-101:hover {
+  transform: scale(1.01);
+} /* floating card animation */
+@keyframes floaty {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.floating {
+  animation: floaty 6s ease-in-out infinite;
+} /* responsive text clamp for hero */
+h1 {
+  font-size: clamp(1.75rem, 3.6vw, 3.25rem);
+} /* gallery image subtle overlay */
+figure figcaption {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+figure:hover figcaption {
+  opacity: 1;
+  transform: translateY(0);
+} /* theme picker
+swatches look */
+.theme-btn {
+  border: 2px solid rgba(15, 23, 42, 0.06);
+} /* media
+queries for small adjustments */
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+} /* Larger desktop visual improvement */
+@media (min-width: 1200px) {
+  .transform-gpu {
+    transform: translateZ(0);
+  }
+} /* make sure utility classes used
+in HTML are easy to override */ /*-------------------------------------- CSS End
+-------------------------------------------*/
